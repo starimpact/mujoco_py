@@ -292,7 +292,8 @@ class LinuxCPUExtensionBuilder(LinuxExtensionBuilder):
 
         self.extension.sources.append(
             join(self.CYMJ_DIR_PATH, "gl", "osmesashim.c"))
-        self.extension.libraries.extend(['glewosmesa', 'OSMesa', 'GL'])
+        #self.extension.libraries.extend(['glewosmesa', 'OSMesa', 'GL'])
+        self.extension.libraries.extend(['glew', 'GL', 'OSMesa'])
         self.extension.runtime_library_dirs = [join(mjpro_path, 'bin')]
 
 
@@ -303,7 +304,8 @@ class LinuxGPUExtensionBuilder(LinuxExtensionBuilder):
 
         self.extension.sources.append(self.CYMJ_DIR_PATH + "/gl/eglshim.c")
         self.extension.include_dirs.append(self.CYMJ_DIR_PATH + '/vendor/egl')
-        self.extension.libraries.extend(['glewegl'])
+        #self.extension.libraries.extend(['glewegl'])
+        self.extension.libraries.extend(['glew', 'GL'])
         self.extension.runtime_library_dirs = [join(mjpro_path, 'bin')]
 
     def _build_impl(self):
