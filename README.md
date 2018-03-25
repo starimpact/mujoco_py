@@ -123,11 +123,11 @@ This is somewhat dependent on internal OpenAI infrastructure at the moment, but 
 1. apt-get install一个python3.5或python3.6的版本，然后用`virtualenv --system-site-packages -p python3.5 [your virtual directory]`安装虚拟环境。
 1. 用`source [your virtual directory]/bin/activate` 进入虚拟环境。
 1. 建一个`~/.pip/pip.conf`文件夹，写入：
-```
-[global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-```
-这是用pip清华源，速度会快很多，比官方源快几十倍的样子。
+  ```
+  [global]
+  index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+  ```
+  这是用pip清华源，速度会快很多，比官方源快几十倍的样子。
 1. 进入clone下来的mujoco_py文件夹，运行`pip install -e .`  [注意后面有一个点]。
 1. 一般情况下装到mujoco包时会等个十来分钟，如果超过这个时间，说明下载的速度出现了问题。这时候要用nload工具查看当前的下载速度，如果一直是在几kb，那么基本上永远都装不好了。这时候最好停掉，再重新安装，多试几次，直到看到下载速度在100kb左右时才有希望。
 1. 上面一步完成后，进入python环境，然后运行导入命令`import mujoco_py`，这时个的mujoco会进行一些编译的工作。如果编译失败，说明缺少一些库文件，只需要按照提示安装好就行了。
