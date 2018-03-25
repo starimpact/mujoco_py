@@ -112,3 +112,29 @@ This is somewhat dependent on internal OpenAI infrastructure at the moment, but 
 - Jonathan Ho
 - Peter Welinder
 - Wojciech Zaremba
+
+## Details in Intallation of Mujoco
+1.ubuntu建议是16.04版本，或macos，其它系统我没试过。
+2.从mujoco官网下载mjpro150，放到当前用户目录下：`~/.mujoco`，没有这个目录就自己建一个。解压mjpro150。
+3.从mujoco官网申请一个30天的试用key。放到`~/.mujoco`下面。注：国内邮箱收不到验证邮箱，至少我的126是没收到。
+4.进入mjpro150中的sample文件夹，make一下，如果成功，说明没什么大问题了。可以到bin目录下运行：`LD_LIBRARY_PATH=./ ./simulate`，如果有窗口显示说明就正常了。注意将`.mujoco`下的mjkey.txt 复制一份到bin下。
+5.从starimpact的github下载`https://github.com/starimpact/mujoco_py.git`。从这里下载是因为这是一个坑已经填好的版本。
+6.安装一个virutalenv的工具，后面的所有python相关操作都是在虚拟环境中进行，防止把系统的搞坏了。这玩意也挺好用。
+7.apt-get install一个python3.5或python3.6的版本，然后用`virtualenv --system-site-packages -p python3.5 [your virtual directory]`安装虚拟环境。
+8.用`source [your virtual directory]/bin/activate` 进入虚拟环境。
+9.建一个`~/.pip/pip.conf`文件夹，写入：
+```
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+```
+这是用pip清华源，速度会快很多，比官方源快几十倍的样子。
+10.进入clone下来的mujoco_py文件夹，运行`pip install -e .`  [注意后面有一个点]。
+11.一般情况下装到mujoco包时会等个十来分钟，如果超过这个时间，说明下载的速度出现了问题。这时候要用nload工具查看当前的下载速度，如果一直是在几kb，那么基本上永远都装不好了。这时候最好停掉，再重新安装，多试几次，直到看到下载速度在100kb左右时才有希望。
+12.上面一步完成后，进入python环境，然后运行导入命令`import mujoco_py`，这时个的mujoco会进行一些编译的工作。如果编译失败，说明缺少一些库文件，只需要按照提示安装好就行了。
+13.mujoco_py导入成功后，那么后面问题就少了。进mujoco_py文件夹，会看到一个do.sh的文件，运行它，就可以看到效果。
+14.说一说do.sh里的变量的作用是什么：
+- LD_LIBRARY_PATH=/home/mingzhang/.mujoco/mjpro150/bin —> 将之前安装好的mjpro150的环境加到库搜索环境变量里。
+- MUJOCO_PY_FORCE_CPU=1 —> 指定mujoco只在cpu上运行。这一步很重要。
+15.完成。
+
+注意：以上就是安装使用mujoco的关键步骤。中间会遇到的其它问题都是安装依赖库的问题，请自行google解决。不能google，自行翻墙，哈哈……
