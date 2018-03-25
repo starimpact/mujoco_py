@@ -114,6 +114,7 @@ This is somewhat dependent on internal OpenAI infrastructure at the moment, but 
 - Wojciech Zaremba
 
 ## Details in Intallation of Mujoco
+#### by starimpact
 1. ubuntu建议是16.04版本，或macos，其它系统我没试过。
 1. 从mujoco官网下载mjpro150，放到当前用户目录下：`~/.mujoco`，没有这个目录就自己建一个。解压mjpro150。
 1. 从mujoco官网申请一个30天的试用key。放到`~/.mujoco`下面。注：国内邮箱收不到验证邮箱，至少我的126是没收到。
